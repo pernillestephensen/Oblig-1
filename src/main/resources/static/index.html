@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Oblig 1</title>
+    <title>Betilling av kinobilletter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js" type="application/javascript"></script>
 </head>
 <body>
+<h1>Bestilling av kinobilletter</h1>
+<table>
+    <tr><td>
+        <label for="film">Velg film:</label>
+        <select id="film">
+            <option value="" disabled selected>Velg film her</option>
+            <option>Anyone But You</option>
+            <option>Bukkene Bruse på badeland</option>
+            <option>Dream Scenario</option>
+            <option>Konvoi</option>
+            <option>The Beekeeper</option>
+    </select>
+    </td></tr>
+</table>
+
+</br>
+
+<label for="antall">Antall: </label>
+<input type="number" id="antall" min="1" style="width: 25px;"/>
+
+</br>
+</br>
+
+<table id="personalia">
+<tr>
+    <td>Fornavn: </td>
+    <td><input type="text" id="fornavn"></td>
+</tr>
+
+<tr>
+    <td>Etternavn: </td>
+    <td><input type="text" id="etternavn"></td>
+</tr>
+
+<tr>
+    <td>Telefonnummer: </td>
+    <td><input type="text" id="telefonnummer"></td>
+</tr>
+
+<tr>
+    <td>E-mail: </td>
+    <td><input type="text" id="email"></td>
+</tr>
+</table>
+
+</br>
+
+<button onclick="registrer()">Kjøp billett</button>
+
+<h2>Alle billetter</h2>
+
+<div id="billetter"></div>
+
+
 
 </body>
 </html>
