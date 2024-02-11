@@ -24,19 +24,19 @@ function registrer(){
 }
 
 function visBilletter(){
-    let ut = "<table><tr>" +
-        "<th style='text-align: left;'>Film</th><th style='text-align: left;'>Antall</th><th style='text-align: left;'>Fornavn</th>" +
-        "<th style='text-align: left;'>Etternavn</th><th style='text-align: left;'>Telefonnummer</th><th style='text-align: center;'>E-mail</th>" +
-        "</tr>";
+    let ut = "<div class='row'>" +
+        "<div class='col-md-2';'>Film</div><div class='col-md-1';>Antall</div><div class='col-md-1';'>Fornavn</div>" +
+        "<div class='col-md-1';>Etternavn</div><div class='col-md-1';'>Telefon</div><div class='col-md-1';'>E-mail</div>" +
+        "</div>" + "</br>";
     for(let b of billetter) {
-        ut+= "<tr>";
-        ut+= "<td style='text-align: left;'>" + b.film + "</td>";
-        ut+= "<td style='text-align: center;'>" + b.antall + "</td>";
-        ut+= "<td style='text-align: left;'>" + b.fornavn + "</td>";
-        ut+= "<td style='text-align: left;'>" + b.etternavn + "</td>";
-        ut+= "<td style='text-align: center;'>" + b.telefonnummer + "</td>";
-        ut+= "<td style='text-align: left;'>" + b.email + "</td>";
-        ut+= "</tr>";
+        ut+= "<div class='row'>";
+        ut+= "<div class='col-md-2';'>" + b.film + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.antall + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.fornavn + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.etternavn + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.telefonnummer + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.email + "</div>";
+        ut+= "</div>";
     }
     $("#billetter").html(ut);
 
