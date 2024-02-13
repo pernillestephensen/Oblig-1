@@ -12,14 +12,17 @@
 <table>
     <tr><td>
         <label for="film">Velg film:</label>
-        <select id="film" class="required=">
+        <select id="film" class="required">
             <option value="" disabled selected>Velg film her</option>
-            <option value="1">Anyone But You</option>
-            <option value="2">Bukkene Bruse på badeland</option>
-            <option value="3">Dream Scenario</option>
-            <option value="4">Konvoi</option>
-            <option value="5">The Beekeeper</option>
+            <option>Anyone But You</option>
+            <option>Bukkene Bruse på badeland</option>
+            <option>Dream Scenario</option>
+            <option>Konvoi</option>
+            <option>The Beekeeper</option>
     </select>
+    <td>
+        <div id="feilvalg" style="color: red"></div>
+    </td>
     </td></tr>
 </table>
 
@@ -65,8 +68,8 @@
 
 </br>
 
-<button onclick="validerAntall(); validerFornavn(); validerEtternavn(); validerTelefonnummer();
-    validerEmail(); registrer();">Kjøp billett</button>
+<button onclick="validerValg(); validerAntall(); validerFornavn(); validerEtternavn();
+    validerTelefonnummer(); validerEmail(); registrer();">Kjøp billett</button>
 
 </br></br>
 

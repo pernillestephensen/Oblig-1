@@ -1,6 +1,18 @@
 const billetter = [];
 let ut = "";
 
+function validerValg() {
+    const selectElement = document.getElementById("film");
+    const feilmeldingElement = $("#feilvalg");
+
+    if (selectElement.value === "") {
+        feilmeldingElement.html("Vennligst velg en film");
+        return false;
+    } else {
+        feilmeldingElement.html("");
+        return true;
+    }
+}
 function validerInput(inputId, feilmeldingId, feilmeldingTekst) {
     const inputElement = document.getElementById(inputId);
     const feilmeldingElement = $("#" + feilmeldingId);
@@ -13,6 +25,7 @@ function validerInput(inputId, feilmeldingId, feilmeldingTekst) {
         return true;
     }
 }
+
 
 function validerAntall() {
     validerInput("antall", "feilantall", "Vennligst velg antall");
@@ -50,7 +63,7 @@ function validerEmail() {
 }
 
 function registrer(){
-    if (validerAntall() && validerFornavn() && validerEtternavn() && validerTelefonnummer() && validerEmail()) {
+    if(validerValg() || validerAntall() || validerFornavn() || validerEtternavn() || validerTelefonnummer() || validerEmail()){
         const film = $("#film").val();
         const antall = $("#antall").val();
         const fornavn = $("#fornavn").val();
