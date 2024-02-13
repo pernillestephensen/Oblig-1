@@ -1,44 +1,115 @@
 const billetter = [];
+let ut = "";
+
+function validerValg() {
+    const selectElement = document.getElementById("film");
+    const feilmeldingElement = $("#feilvalg");
+
+    if (selectElement.value === "") {
+        feilmeldingElement.html("Vennligst velg en film");
+        return false;
+    } else {
+        feilmeldingElement.html("");
+        return true;
+    }
+}
+function validerInput(inputId, feilmeldingId, feilmeldingTekst) {
+    const inputElement = document.getElementById(inputId);
+    const feilmeldingElement = $("#" + feilmeldingId);
+
+    if (!inputElement.checkValidity()) {
+        feilmeldingElement.html(feilmeldingTekst);
+        return false;
+    } else {
+        feilmeldingElement.html("");
+        return true;
+    }
+}
+
+
+function validerAntall() {
+    validerInput("antall", "feilantall", "Vennligst velg antall");
+}
+
+function validerFornavn() {
+    validerInput("fornavn", "feilfornavn", "Vennligst skriv inn fornavn");
+}
+
+function validerEtternavn() {
+    validerInput("etternavn", "feiletternavn", "Vennligst skriv inn etternavn");
+}
+
+function validerTelefonnummer() {
+    const telefonnummerRegex = /^\d{8}$/;
+    const telefonnummer = $("#telefonnummer").val();
+
+    if (!telefonnummer || telefonnummer.length !== 8) {
+        $("#feiltelefonnummer").html("Vennligst skriv inn et gyldig telefonnummer på 8 sifre");
+        return false;
+    }
+
+    if (!telefonnummerRegex.test(telefonnummer)) {
+        $("#feiltelefonnummer").html("Vennligst skriv inn et gyldig telefonnummer på 8 sifre");
+        return false;
+    } else {
+        $("#feiltelefonnummer").html("");
+        return true;
+    }
+}
+
+function validerEmail() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return validerInput("email", "feilemail", "Vennligst skriv inn en gyldig e-postadresse") && emailRegex.test($("#email").val());
+}
 
 function registrer(){
-    const film = $("#film").val();
-    const antall = $("#antall").val();
-    const fornavn = $("#fornavn").val();
-    const etternavn = $("#etternavn").val();
-    const telefonnummer = $("#telefonnummer").val();
-    const email = $("#email").val();
+    if(validerValg() || validerAntall() || validerFornavn() || validerEtternavn() || validerTelefonnummer() || validerEmail()){
+        const film = $("#film").val();
+        const antall = $("#antall").val();
+        const fornavn = $("#fornavn").val();
+        const etternavn = $("#etternavn").val();
+        const telefonnummer = $("#telefonnummer").val();
+        const email = $("#email").val();
 
-    const billett = {
-        film : film,
-        antall : antall,
-        fornavn : fornavn,
-        etternavn : etternavn,
-        telefonnummer : telefonnummer,
-        email : email
-    };
+        const billett = {
+            film : film,
+            antall : antall,
+            fornavn : fornavn,
+            etternavn : etternavn,
+            telefonnummer : telefonnummer,
+            email : email
+        };
 
-    billetter.push(billett);
-    $('input').val('');
-    $('select').val('');
-    visBilletter()
+        billetter.push(billett);
+        $('input').val('');
+        $('select').val('');
+        visBilletter();
+    }
 }
 
 function visBilletter(){
-    let ut = "<table><tr>" +
-        "<th style='text-align: left;'>Film</th><th style='text-align: left;'>Antall</th><th style='text-align: left;'>Fornavn</th>" +
-        "<th style='text-align: left;'>Etternavn</th><th style='text-align: left;'>Telefonnummer</th><th style='text-align: center;'>E-mail</th>" +
-        "</tr>";
+        ut = "<div class='row'>" +
+        "<div class='col-md-2';'>Film</div><div class='col-md-1';>Antall</div><div class='col-md-1';'>Fornavn</div>" +
+        "<div class='col-md-1';>Etternavn</div><div class='col-md-1';'>Telefon</div><div class='col-md-1';'>E-mail</div>" +
+        "</div>" + "</br>";
     for(let b of billetter) {
-        ut+= "<tr>";
-        ut+= "<td style='text-align: left;'>" + b.film + "</td>";
-        ut+= "<td style='text-align: center;'>" + b.antall + "</td>";
-        ut+= "<td style='text-align: left;'>" + b.fornavn + "</td>";
-        ut+= "<td style='text-align: left;'>" + b.etternavn + "</td>";
-        ut+= "<td style='text-align: center;'>" + b.telefonnummer + "</td>";
-        ut+= "<td style='text-align: left;'>" + b.email + "</td>";
-        ut+= "</tr>";
+        ut+= "<div class='row'>";
+        ut+= "<div class='col-md-2';'>" + b.film + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.antall + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.fornavn + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.etternavn + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.telefonnummer + "</div>";
+        ut+= "<div class='col-md-1';'>" + b.email + "</div>";
+        ut+= "</div>";
     }
     $("#billetter").html(ut);
 
+}
+
+function slett(){
+    billetter.length = 0;
+    visBilletter();
+    ut = " ";
+    $("#billetter").html(ut);
 }
 

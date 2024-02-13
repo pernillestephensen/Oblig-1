@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Betilling av kinobilletter</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="script.js" type="application/javascript"></script>
 </head>
 <body>
@@ -11,7 +12,7 @@
 <table>
     <tr><td>
         <label for="film">Velg film:</label>
-        <select id="film">
+        <select id="film" class="required">
             <option value="" disabled selected>Velg film her</option>
             <option>Anyone But You</option>
             <option>Bukkene Bruse på badeland</option>
@@ -19,13 +20,21 @@
             <option>Konvoi</option>
             <option>The Beekeeper</option>
     </select>
+    <td>
+        <div id="feilvalg" style="color: red"></div>
+    </td>
     </td></tr>
 </table>
 
 </br>
+<table>
+<tr>
+    <td>Antall: </td>
+    <td><input type="number" id="antall" min="1" required style="width: 42px;"/></td>
+    <td id="feilantall" style="color: red"></td>
+</tr>
+</table>
 
-<label for="antall">Antall: </label>
-<input type="number" id="antall" min="1" style="width: 25px;"/>
 
 </br>
 </br>
@@ -33,32 +42,44 @@
 <table id="personalia">
 <tr>
     <td>Fornavn: </td>
-    <td><input type="text" id="fornavn"></td>
+    <td><input type="text" id="fornavn" required></td>
+    <td id="feilfornavn" style="color: red"></td>
 </tr>
 
 <tr>
     <td>Etternavn: </td>
-    <td><input type="text" id="etternavn"></td>
+    <td><input type="text" id="etternavn" required></td>
+    <td id="feiletternavn" style="color: red"></td>
 </tr>
 
 <tr>
     <td>Telefonnummer: </td>
-    <td><input type="text" id="telefonnummer"></td>
+    <td><input type="text" id="telefonnummer" required></td>
+    <td id="feiltelefonnummer" style="color: red"></td>
 </tr>
+
 
 <tr>
     <td>E-mail: </td>
-    <td><input type="text" id="email"></td>
+    <td><input type="email" id="email" required></td>
+    <td id="feilemail" style="color: red"></td>
 </tr>
 </table>
 
 </br>
 
-<button onclick="registrer()">Kjøp billett</button>
+<button onclick="validerValg(); validerAntall(); validerFornavn(); validerEtternavn();
+    validerTelefonnummer(); validerEmail(); registrer();">Kjøp billett</button>
+
+</br></br>
 
 <h2>Alle billetter</h2>
 
 <div id="billetter"></div>
+
+</br></br>
+
+<button onclick="slett();">Slett alle billettene</button>
 
 
 
