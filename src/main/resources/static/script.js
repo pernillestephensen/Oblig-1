@@ -5,7 +5,7 @@ function validerValg() {
     const selectElement = document.getElementById("film");
     const feilmeldingElement = $("#feilvalg");
 
-    if (selectElement.value === "") {
+    if (selectElement.value == "") {
         feilmeldingElement.html("Vennligst velg en film");
         return false;
     } else {
@@ -28,15 +28,15 @@ function validerInput(inputId, feilmeldingId, feilmeldingTekst) {
 
 
 function validerAntall() {
-    validerInput("antall", "feilantall", "Vennligst velg antall");
+    return validerInput("antall", "feilantall", "Vennligst velg antall");
 }
 
 function validerFornavn() {
-    validerInput("fornavn", "feilfornavn", "Vennligst skriv inn fornavn");
+   return validerInput("fornavn", "feilfornavn", "Vennligst skriv inn fornavn");
 }
 
 function validerEtternavn() {
-    validerInput("etternavn", "feiletternavn", "Vennligst skriv inn etternavn");
+   return validerInput("etternavn", "feiletternavn", "Vennligst skriv inn etternavn");
 }
 
 function validerTelefonnummer() {
@@ -63,7 +63,8 @@ function validerEmail() {
 }
 
 function registrer(){
-    if(validerValg() || validerAntall() || validerFornavn() || validerEtternavn() || validerTelefonnummer() || validerEmail()){
+
+    if(validerValg() && validerAntall() && validerFornavn() && validerEtternavn() && validerTelefonnummer() && validerEmail()){
         const film = $("#film").val();
         const antall = $("#antall").val();
         const fornavn = $("#fornavn").val();
