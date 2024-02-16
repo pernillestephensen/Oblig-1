@@ -59,7 +59,21 @@ function validerTelefonnummer() {
 
 function validerEmail() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return validerInput("email", "feilemail", "Vennligst skriv inn en gyldig e-postadresse") && emailRegex.test($("#email").val());
+    const mail = $("#email").val();
+
+    if (!mail) {
+        $("#feilemail").html("Vennligst skriv inn en gyldig e-postadresse");
+        return false;
+    }
+
+    if (!emailRegex.test(mail)) {
+        $("#feilemail").html("Vennligst skriv inn en gyldig e-postadresse");
+        return false;
+    } else {
+        $("#feilemail").html("");
+        return true;
+    }
+
 }
 
 function registrer(){
